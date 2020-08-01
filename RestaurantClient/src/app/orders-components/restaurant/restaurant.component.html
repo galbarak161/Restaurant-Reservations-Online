@@ -1,0 +1,31 @@
+<form [formGroup]="restaurantForm" novalidate autocomplete="off">
+  <div class="form-group">
+    <div id="restaurantSelect">
+      <p id="HelpBlock">Enter name of the restaurant or choose from the list:</p>
+      <input class="form-control" id="restaurantName" formControlName="restaurantName" type="text" list="restaurants" placeholder="Choose restaurant"
+        autofocus="true" [ngClass]="{
+          'is-valid': (restaurantName.valid && restaurantName.dirty && restaurantName.touched ),
+          'is-invalid': (restaurantName.invalid && restaurantName.dirty && restaurantName.touched)
+        }">
+      <datalist id="restaurants">
+        <option *ngFor="let r of ResData; index as i" value="{{r}}">{{r}}</option>
+      </datalist>
+      <div [hidden]="isResValid" class="invalid-feedback">Please provide a valid email.</div>
+    </div>
+
+    <br>
+    <br>
+    <div id="dateSelect">
+      <p id="HelpBlock">Choose date to order:</p>
+      <input type="date" name="orderDate" class="form-control range-field" formControlName="orderDate" [ngClass]="{
+      'is-valid': (orderDate.valid && orderDate.dirty && orderDate.touched),
+      'is-invalid': (orderDate.invalid && orderDate.dirty && orderDate.touched)
+    }">
+      <p [hidden]="isDateValid" class="invalid">Please provide a valid Date.</p>
+    </div>
+  </div>
+
+  <div class="row justify-content-around divBTN">
+    <button type="submit" class="btn btn-primary" (click)="sendDetails()">Submit</button>
+  </div>
+</form>

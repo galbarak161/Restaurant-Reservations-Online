@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RestaurantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="RestaurantId" />
+          </Key>
+          <Property Name="RestaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NumberOfTables" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurant_Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RestaurantId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tables">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="TableNumber" Type="smallint" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NumberOfDiners" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserEmail" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\DESKTOP\RESTAURANTPROJECT\RESTAURANTPROJECT\WEBSERVICE\APP_DATA\RESTAURANTDB.MDF.dbo.View_Orders_By_ResId_And_OrderDate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Orders_By_ResId_And_OrderDate">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="RestaurantId" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="TableNumber" />
+            <PropertyRef Name="NumberOfDiners" />
+            <PropertyRef Name="UserEmail" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RestaurantId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="TableNumber" Type="smallint" Nullable="false" />
+          <Property Name="NumberOfDiners" Type="int" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\DESKTOP\RESTAURANTPROJECT\RESTAURANTPROJECT\WEBSERVICE\APP_DATA\RESTAURANTDB.MDF.dbo.View_Restaurant_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Restaurant_Details">
+          <Key>
+            <PropertyRef Name="RestaurantId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="NumberOfTables" />
+          </Key>
+          <Property Name="RestaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NumberOfTables" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\DESKTOP\RESTAURANTPROJECT\RESTAURANTPROJECT\WEBSERVICE\APP_DATA\RESTAURANTDB.MDF.dbo.View_User_Orders_By_UserId' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_User_Orders_By_UserId">
+          <Key>
+            <PropertyRef Name="RestaurantName" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="TableId" />
+            <PropertyRef Name="TableNumber" />
+            <PropertyRef Name="NumberOfDiners" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RestaurantName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="TableNumber" Type="smallint" Nullable="false" />
+          <Property Name="NumberOfDiners" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\DESKTOP\RESTAURANTPROJECT\RESTAURANTPROJECT\WEBSERVICE\APP_DATA\RESTAURANTDB.MDF.dbo.View_Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Users">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="UserEmail" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Order">
+          <End Role="Restaurant_Order" Type="Self.Restaurant_Order" Multiplicity="1" />
+          <End Role="Tables" Type="Self.Tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="Tables">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Restaurant_Order" Type="Self.Restaurant_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Principal>
+            <Dependent Role="Restaurant_Order">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Email">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tables" Type="Self.Tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserEmail" />
+            </Principal>
+            <Dependent Role="Tables">
+              <PropertyRef Name="UserEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestaurantDBModelStoreContainer">
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant_Order" EntityType="Self.Restaurant_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Orders_By_ResId_And_OrderDate" EntityType="Self.View_Orders_By_ResId_And_OrderDate" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Orders_By_ResId_And_OrderDate].[Name] AS [Name], 
+    [View_Orders_By_ResId_And_OrderDate].[RestaurantId] AS [RestaurantId], 
+    [View_Orders_By_ResId_And_OrderDate].[OrderId] AS [OrderId], 
+    [View_Orders_By_ResId_And_OrderDate].[OrderDate] AS [OrderDate], 
+    [View_Orders_By_ResId_And_OrderDate].[TableNumber] AS [TableNumber], 
+    [View_Orders_By_ResId_And_OrderDate].[NumberOfDiners] AS [NumberOfDiners], 
+    [View_Orders_By_ResId_And_OrderDate].[UserEmail] AS [UserEmail]
+    FROM [dbo].[View_Orders_By_ResId_And_OrderDate] AS [View_Orders_By_ResId_And_OrderDate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Restaurant_Details" EntityType="Self.View_Restaurant_Details" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Restaurant_Details].[RestaurantId] AS [RestaurantId], 
+    [View_Restaurant_Details].[Name] AS [Name], 
+    [View_Restaurant_Details].[NumberOfTables] AS [NumberOfTables]
+    FROM [dbo].[View_Restaurant_Details] AS [View_Restaurant_Details]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_User_Orders_By_UserId" EntityType="Self.View_User_Orders_By_UserId" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_User_Orders_By_UserId].[RestaurantName] AS [RestaurantName], 
+    [View_User_Orders_By_UserId].[OrderDate] AS [OrderDate], 
+    [View_User_Orders_By_UserId].[OrderId] AS [OrderId], 
+    [View_User_Orders_By_UserId].[TableId] AS [TableId], 
+    [View_User_Orders_By_UserId].[TableNumber] AS [TableNumber], 
+    [View_User_Orders_By_UserId].[NumberOfDiners] AS [NumberOfDiners], 
+    [View_User_Orders_By_UserId].[UserId] AS [UserId]
+    FROM [dbo].[View_User_Orders_By_UserId] AS [View_User_Orders_By_UserId]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Users" EntityType="Self.View_Users" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Users].[Name] AS [Name], 
+    [View_Users].[UserEmail] AS [UserEmail], 
+    [View_Users].[UserId] AS [UserId], 
+    [View_Users].[PhoneNumber] AS [PhoneNumber]
+    FROM [dbo].[View_Users] AS [View_Users]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Order" Association="Self.FK_Order">
+            <End Role="Restaurant_Order" EntitySet="Restaurant_Order" />
+            <End Role="Tables" EntitySet="Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant" Association="Self.FK_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Restaurant_Order" EntitySet="Restaurant_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Email" Association="Self.FK_User_Email">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tables" EntitySet="Tables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestaurantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="RestaurantId" />
+          </Key>
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumberOfTables" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Restaurant_Order" Relationship="Self.FK_Restaurant" FromRole="Restaurant" ToRole="Restaurant_Order" />
+        </EntityType>
+        <EntityType Name="Restaurant_Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Restaurant" FromRole="Restaurant_Order" ToRole="Restaurant" />
+          <NavigationProperty Name="Tables" Relationship="RestaurantDBModel.FK_Order" FromRole="Restaurant_Order" ToRole="Table" />
+        </EntityType>
+        <Association Name="FK_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Restaurant_Order" Type="Self.Restaurant_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Principal>
+            <Dependent Role="Restaurant_Order">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestaurantDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+          <EntitySet Name="Restaurant_Order" EntityType="Self.Restaurant_Order" />
+          <AssociationSet Name="FK_Restaurant" Association="Self.FK_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Restaurant_Order" EntitySet="Restaurant_Order" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="RestaurantDBModel.User" />
+          <EntitySet Name="Tables" EntityType="RestaurantDBModel.Table" />
+          <AssociationSet Name="FK_Order" Association="RestaurantDBModel.FK_Order">
+            <End Role="Restaurant_Order" EntitySet="Restaurant_Order" />
+            <End Role="Table" EntitySet="Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Email" Association="RestaurantDBModel.FK_User_Email">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Table" EntitySet="Tables" />
+          </AssociationSet>
+          <EntitySet Name="View_Users" EntityType="RestaurantDBModel.View_Users" />
+          <FunctionImport Name="Get_Order_Id" ReturnType="Collection(Int32)">
+            <Parameter Name="RestaurantId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Get_User_Orders_By_Email" ReturnType="Collection(RestaurantDBModel.Get_User_Orders_By_Email_Result)">
+          <Parameter Name="UserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="View_User_Orders_By_UserId" EntityType="RestaurantDBModel.View_User_Orders_By_UserId" />
+          <EntitySet Name="View_Orders_By_ResId_And_OrderDate" EntityType="RestaurantDBModel.View_Orders_By_ResId_And_OrderDate" />
+          <EntitySet Name="View_Restaurant_Details" EntityType="RestaurantDBModel.View_Restaurant_Details" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserEmail" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tables" Relationship="RestaurantDBModel.FK_User_Email" FromRole="User" ToRole="Table" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="TableNumber" Type="Int16" Nullable="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfDiners" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Restaurant_Order" Relationship="RestaurantDBModel.FK_Order" FromRole="Table" ToRole="Restaurant_Order" />
+          <NavigationProperty Name="User" Relationship="RestaurantDBModel.FK_User_Email" FromRole="Table" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Order">
+          <End Type="RestaurantDBModel.Restaurant_Order" Role="Restaurant_Order" Multiplicity="1" />
+          <End Type="RestaurantDBModel.Table" Role="Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant_Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="Table">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Email">
+          <End Type="RestaurantDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="RestaurantDBModel.Table" Role="Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserEmail" />
+            </Principal>
+            <Dependent Role="Table">
+              <PropertyRef Name="UserEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_Users">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="UserEmail" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="Get_User_Orders_By_Email_Result">
+          <Property Type="String" Name="RestaurantName" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" />
+          <Property Type="Int32" Name="OrderId" Nullable="false" />
+          <Property Type="Int16" Name="TableNumber" Nullable="false" />
+          <Property Type="Int32" Name="NumberOfDiners" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="View_User_Orders_By_UserId">
+          <Key>
+            <PropertyRef Name="RestaurantName" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="TableId" />
+            <PropertyRef Name="TableNumber" />
+            <PropertyRef Name="NumberOfDiners" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RestaurantName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="TableId" Type="Int32" Nullable="false" />
+          <Property Name="TableNumber" Type="Int16" Nullable="false" />
+          <Property Name="NumberOfDiners" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_Orders_By_ResId_And_OrderDate">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="RestaurantId" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="TableNumber" />
+            <PropertyRef Name="NumberOfDiners" />
+            <PropertyRef Name="UserEmail" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TableNumber" Type="Int16" Nullable="false" />
+          <Property Name="NumberOfDiners" Type="Int32" Nullable="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="View_Restaurant_Details">
+          <Key>
+            <PropertyRef Name="RestaurantId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="NumberOfTables" />
+          </Key>
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfTables" Type="Int16" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestaurantDBModelStoreContainer" CdmEntityContainer="RestaurantDBEntities1">
+          <EntitySetMapping Name="Restaurants">
+            <EntityTypeMapping TypeName="RestaurantDBModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NumberOfTables" ColumnName="NumberOfTables" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurant_Order">
+            <EntityTypeMapping TypeName="RestaurantDBModel.Restaurant_Order">
+              <MappingFragment StoreEntitySet="Restaurant_Order">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RestaurantDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="RestaurantDBModel.Table">
+              <MappingFragment StoreEntitySet="Tables">
+                <ScalarProperty Name="NumberOfDiners" ColumnName="NumberOfDiners" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Users">
+            <EntityTypeMapping TypeName="RestaurantDBModel.View_Users">
+              <MappingFragment StoreEntitySet="View_Users">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_User_Orders_By_UserId">
+            <EntityTypeMapping TypeName="RestaurantDBModel.View_User_Orders_By_UserId">
+              <MappingFragment StoreEntitySet="View_User_Orders_By_UserId">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NumberOfDiners" ColumnName="NumberOfDiners" />
+                <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="RestaurantName" ColumnName="RestaurantName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Orders_By_ResId_And_OrderDate">
+            <EntityTypeMapping TypeName="RestaurantDBModel.View_Orders_By_ResId_And_OrderDate">
+              <MappingFragment StoreEntitySet="View_Orders_By_ResId_And_OrderDate">
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="NumberOfDiners" ColumnName="NumberOfDiners" />
+                <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Restaurant_Details">
+            <EntityTypeMapping TypeName="RestaurantDBModel.View_Restaurant_Details">
+              <MappingFragment StoreEntitySet="View_Restaurant_Details">
+                <ScalarProperty Name="NumberOfTables" ColumnName="NumberOfTables" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

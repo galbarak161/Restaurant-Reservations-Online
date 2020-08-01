@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7961ca4e0ba403a902e037ea5ed4409" Name="Diagram1">
+        <EntityTypeShape EntityType="RestaurantDBModel.Restaurant" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.Restaurant_Order" Width="1.5" PointX="3.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="RestaurantDBModel.FK_Restaurant" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RestaurantDBModel.User" Width="1.5" PointX="7.875" PointY="1.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.Table" Width="1.5" PointX="5.5" PointY="1.125" />
+        <AssociationConnector Association="RestaurantDBModel.FK_Order" />
+        <AssociationConnector Association="RestaurantDBModel.FK_User_Email" />
+        <EntityTypeShape EntityType="RestaurantDBModel.View_Users" Width="1.5" PointX="2.375" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RestaurantDBModel.View_User_Orders_By_UserId" Width="1.5" PointX="2.375" PointY="4.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="RestaurantDBModel.View_Orders_By_ResId_And_OrderDate" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RestaurantDBModel.View_Restaurant_Details" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

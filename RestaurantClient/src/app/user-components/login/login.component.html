@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" novalidate autocomplete="on">
+  <div class="form-group">
+    <label for="InputEmail">Email address</label>
+    <input type="email" class="form-control" placeholder="Enter email" autofocus="true" autocomplete="on" formControlName="email"
+      [ngClass]="{
+          'is-valid': (email.valid && email.dirty && email.touched),
+          'is-invalid': (email.invalid && email.dirty && email.touched)
+        }">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="password">Phone Number</label>
+    <input type="number" class="form-control" placeholder="Enter Phone number" formControlName="phone" [ngClass]="{
+        'is-valid': (phone.valid && phone.dirty && phone.touched),
+        'is-invalid': (phone.invalid && phone.dirty && phone.touched)
+      }">
+  </div>
+  <div class="alert alert-warning" role="alert" [hidden]="hideInvalidErrorMessage">
+    Wrong Email or Phone Number!
+  </div>
+  <div class="row justify-content-around">
+    <button type="submit" class="col-md-5 btn btn-primary" (click)="login()">Log In</button>
+    <button class="col-md-5 btn btn-primary" type="reset">Clear</button>
+  </div>
+</form>

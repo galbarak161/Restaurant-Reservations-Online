@@ -1,0 +1,52 @@
+<!-- Welcome title -->
+<header class="row">
+  <div class="title">
+    <h1>Welcome!</h1>
+    <br>
+    <h4>Where do you want to eat?</h4>
+  </div>
+</header>
+
+<!-- main program -->
+<main class="row">
+  <section class="col-md-9" *ngIf="hideOrderComponent && hideUserOrderComponent">
+
+    <div class="content">
+      <h1 class="display-4">Hello, {{userName}}!</h1>
+      <p class="lead" *ngIf="userName == 'User'">Welcome! Click
+        <span class="alert-link" (click)="loginToggle()">here</span>
+        to log in or
+        <span class="alert-link" (click)="registerToggle()">here</span>, to register!</p>
+      <p class="lead" *ngIf="userName != 'User'">Welcome! Click
+        <span class="alert-link" (click)="logOut()">here</span> to log out!
+      </p>
+
+      <app-user-orders [hidden]="userName == 'User'" [userOrders]="userOrders" (orderCanceled)="orderHasChange($event)" ></app-user-orders>
+
+      <app-login [hidden]="hideLogin" (userLogin)="login($event)" [users]="users"></app-login>
+
+      <app-register [hidden]="hideReg" (userRegister)="register($event)"[users]="users"></app-register>
+      
+    </div>
+
+  </section>
+
+  <section class="col-md-4" *ngIf="!hideOrderComponent || !hideUserOrderComponent ">
+    <app-new-order [hidden]="hideUserOrderComponent" (orderHasMade)="orderHasChange($event)" [tableNumber]="tableNumber" [orderObj]="orderObj"></app-new-order>
+  </section>
+
+  <section class="col-md-5" *ngIf="!hideOrderComponent || !hideUserOrderComponent ">
+    <app-order [hidden]="hideOrderComponent" [resIdAndDate]="resIdAndDate" (tableNumber)="getTableNumber($event)"></app-order>
+  </section>
+
+  <aside class="col-md-3" *ngIf="userName != 'User'">
+    <app-restaurant (ResAndDate)="getRes($event)"></app-restaurant>
+  </aside>
+</main>
+
+<!-- footer -->
+<footer class="row">
+  <div id="footerDiv">
+    <p> &copy;2018 - Gal Barak</p>
+  </div>
+</footer>

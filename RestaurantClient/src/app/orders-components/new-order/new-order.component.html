@@ -1,0 +1,18 @@
+<form [formGroup]="orderForm" novalidate autocomplete="off" *ngIf="orderObj">
+
+  <p id="HelpBlock">Order table #{{tableNumber}}:</p>
+  <p>Order Confirmation: {{orderObj}}/{{tableNumber}}</p>
+
+  <div class="form-group">
+    <input type="number" class="form-control" min="1" max="20" autofocus="true" placeholder="Enter number of diners" formControlName="NumberOfDiners"
+      [ngClass]="{
+        'is-valid': (NumberOfDiners.valid && NumberOfDiners.dirty && NumberOfDiners.touched),
+        'is-invalid': (NumberOfDiners.invalid && NumberOfDiners.dirty && NumberOfDiners.touched)
+      }">
+    <div class="invalid-feedback">Please provide a valid number of diners (1-20).</div>
+  </div>
+
+  <div class="row justify-content-around">
+    <button type="submit" (click)="orderTable()" class="btn btn-primary">Submit</button>
+  </div>
+</form>

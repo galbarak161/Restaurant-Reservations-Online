@@ -1,0 +1,30 @@
+form {
+    margin-top: 20px;
+    background:#b7b4c163 none repeat scroll 0 0;
+    border: 5px solid #e1e8ed;
+    border-radius: 6px;
+    max-height: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 5px;
+}
+  
+#HelpBlock{
+    font-size: 19px;
+    color: black;
+    font-weight: bold;
+}
+
+.invalid{
+    text-align: center;
+    margin-top: .25rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.divBTN{
+    align-content: center;
+    padding-bottom: 10px;
+}
+

@@ -1,0 +1,14 @@
+  <section *ngIf="orderObj">
+    <p id="HelpBlock">avilable tabls in
+      <span class="span-title">{{resObj['Name']}}</span> at
+      <span class="span-title">{{resIdAndDate['OrderDate'] | date:"dd-MM-yyyy"}}</span>
+    </p>
+    <div class="row">
+      <div class="col-6" *ngFor="let table of arrOfTables(resObj['NumberOfTables']).fill(1); index as i">
+        <button class="button" style="vertical-align:middle" [disabled]="isTableAvilable(i+1) == 'notAvailable'" (click)="chooseTable(i+1)"
+          [ngClass]="isTableAvilable(i+1)">
+          <span>Table #{{i+1}}</span>
+        </button>
+      </div>
+    </div>
+  </section>
